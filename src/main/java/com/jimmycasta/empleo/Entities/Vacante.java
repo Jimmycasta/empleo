@@ -1,31 +1,39 @@
 package com.jimmycasta.empleo.Entities;
 
+import jakarta.persistence.*;
+
 import java.util.Date;
 
+@Entity
+@Table(name = "vacantes")
 public class Vacante {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String nombre;
     private String descripcion;
     private Date fecha;
     private double salario;
     private int destacado;
-    private String image = "no-image.png";
+    private String imagen = "no-image.png";
     private String estatus;
     private String detalles;
+    @OneToOne
+    @JoinColumn(name = "idCategoria")
     private Categoria categoria;
 
     public Vacante() {
     }
 
-    public Vacante(long id, String nombre, String descripcion, Date fecha, double salario, int destacado, String image, String estatus, String detalles, Categoria categoria) {
+    public Vacante(long id, String nombre, String descripcion, Date fecha, double salario, int destacado, String imagen, String estatus, String detalles, Categoria categoria) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.fecha = fecha;
         this.salario = salario;
         this.destacado = destacado;
-        this.image = image;
+        this.imagen = imagen;
         this.estatus = estatus;
         this.detalles = detalles;
         this.categoria = categoria;
@@ -79,25 +87,28 @@ public class Vacante {
         this.destacado = destacado;
     }
 
-    public String getImage() {
-        return image;
+    public String getImagen() {
+        return imagen;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
     public String getEstatus() {
         return estatus;
     }
 
+    public void setEstatus(String estatus) {
+        this.estatus = estatus;
+    }
+
     public Categoria getCategoria() {
         return categoria;
     }
 
-
-    public void setEstatus(String estatus) {
-        this.estatus = estatus;
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 
     public String getDetalles() {
@@ -106,9 +117,6 @@ public class Vacante {
 
     public void setDetalles(String detalles) {
         this.detalles = detalles;
-    }
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
     }
 
     @Override
@@ -120,7 +128,7 @@ public class Vacante {
                 ", fecha=" + fecha +
                 ", salario=" + salario +
                 ", destacado=" + destacado +
-                ", image='" + image + '\'' +
+                ", imagen='" + imagen + '\'' +
                 ", estatus='" + estatus + '\'' +
                 ", detalles='" + detalles + '\'' +
                 ", categoria=" + categoria +

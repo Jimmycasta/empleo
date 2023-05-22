@@ -48,6 +48,7 @@
                     <tbody>
                     <tr th:each="vacante:${listaVacantes}">
 
+                        <td th:text="${vacante.categoria.nombre}"></td>
                         <td th:text="${vacante.getNombre()}"></td>
                         <td th:text="${vacante.getFecha()}"></td>
                         <td th:text="${vacante.getEstatus()}"></td>

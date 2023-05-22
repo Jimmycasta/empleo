@@ -25,7 +25,7 @@ public class VacanteServiceImpl implements IVacanteService {
             vacante1.setFecha(sdf.parse("02-05-2023"));
             vacante1.setSalario(2000);
             vacante1.setDestacado(1);
-            vacante1.setImage("empresa1.png");
+            vacante1.setImagen("empresa1.png");
 
             Vacante vacante2 = new Vacante();
             vacante2.setId(2);
@@ -34,7 +34,7 @@ public class VacanteServiceImpl implements IVacanteService {
             vacante2.setFecha(sdf.parse("02-04-2023"));
             vacante2.setSalario(3000);
             vacante2.setDestacado(0);
-            vacante2.setImage("empresa2.png");
+            vacante2.setImagen("empresa2.png");
 
             Vacante vacante3 = new Vacante();
             vacante3.setId(3);
@@ -43,7 +43,7 @@ public class VacanteServiceImpl implements IVacanteService {
             vacante3.setFecha(sdf.parse("05-05-2023"));
             vacante3.setSalario(1000);
             vacante3.setDestacado(0);
-            vacante3.setImage("empresa3.png");
+            vacante3.setImagen("empresa3.png");
 
             Vacante vacante4 = new Vacante();
             vacante4.setId(4);
@@ -52,7 +52,7 @@ public class VacanteServiceImpl implements IVacanteService {
             vacante4.setFecha(sdf.parse("04-04-2023"));
             vacante4.setSalario(1000);
             vacante4.setDestacado(1);
-            vacante4.setImage("empresa4.png");
+            vacante4.setImagen("empresa4.png");
 
             Vacante vacante5 = new Vacante();
             vacante5.setId(5);
@@ -61,7 +61,7 @@ public class VacanteServiceImpl implements IVacanteService {
             vacante5.setFecha(sdf.parse("10-04-2023"));
             vacante5.setSalario(1500);
             vacante5.setDestacado(1);
-            vacante5.setImage("empresa5.png");
+            vacante5.setImagen("empresa5.png");
 
             lista.add(vacante1);
             lista.add(vacante2);

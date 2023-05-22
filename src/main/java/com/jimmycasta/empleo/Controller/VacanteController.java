@@ -31,7 +31,6 @@ public class VacanteController {
     @GetMapping("/view/{id}")
     public String verDetalle(@PathVariable("id") int idVacante, Model model) {
         Vacante vacante = vacanteService.buscarPorId(idVacante);
-        System.out.println("El id de la Vacante es: " + vacante);
         model.addAttribute("vacante", vacante);
         return "detalle";
 
@@ -62,12 +61,12 @@ public class VacanteController {
         }
         if (!multipart.isEmpty()) {
 
-            String ruta = "c:/imagenes/";
+            String ruta = "C:/Users/JMC/Documents/Proyectos/Intellij/empleo/src/main/resources/static/images/";
             String nombreImagen = Utileria.guardarArchivo(multipart, ruta);
 
             if (nombreImagen != null) {
 
-                vacante.setImage(nombreImagen);
+                vacante.setImagen(nombreImagen);
 
             }
 

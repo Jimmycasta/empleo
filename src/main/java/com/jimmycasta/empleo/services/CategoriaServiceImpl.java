@@ -1,6 +1,7 @@
 package com.jimmycasta.empleo.services;
 
 import com.jimmycasta.empleo.Entities.Categoria;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
