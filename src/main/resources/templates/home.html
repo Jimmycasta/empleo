@@ -10,14 +10,14 @@
 
     <title>EmpleosApp | Aplicación para publicar Ofertas de Trabajo.</title>
     <!-- Bootstrap core CSS -->
-    <link th:insert="fragments/boostrap::bootstrap">
+    <link th:insert="~{fragments/boostrap::bootstrap}">
     <!-- Custom styles for this template -->
     <link th:href="@{bootstrap/css/jumbotron.css}" rel="stylesheet">
     <link th:href="@{bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
 </head>
 
 <body>
-<header th:insert="fragments/navbar::navbar">
+<header th:insert="~{fragments/navbar::navbar}">
 </header>
 
 <main role="main">
@@ -27,16 +27,13 @@
         <div class="container">
             <h3>Encuentra el trabajo que andas buscando.</h3>
             Puedes buscar por descripción y categoría.
-            <form class="form-inline">
-                <input type="text" class="form-control mb-3" id="exampleFormControlInput1"
+            <form class="form-inline" th:object="${search}" th:action="@{/search}" method="get">
+                <input type="text" class="form-control mb-3" th:field="*{descripcion}"
                        placeholder="Escriba una búsqueda">&nbsp;
-                <select class="custom-select custom-select mb-3">
-                    <option selected>Seleccione una categoría</option>
-                    <option value="1">Ventas</option>
-                    <option value="2">Contabilidad</option>
-                    <option value="3">Transporte</option>
-                    <option value="4">Informática</option>
-                    <option value="5">Construcción</option>
+                <select th:field="*{categoria.id}" class="custom-select custom-select mb-3">
+                    <option th:value="${0}" selected>Seleccione una categoría</option>
+                    <option th:each="categoria : ${categorias}" th:value="${categoria.id}" th:text="${categoria.nombre}"></option>
+
                 </select>&nbsp;
                 <button type="submit" class="btn btn-primary mb-3">Buscar</button>
             </form>
@@ -49,7 +46,7 @@
         <hr>
         <div class="row" th:each="vacante : ${vacantes}">
             <div class="col-md-3">
-                <img class="rounded mx-auto d-block" th:src="@{/images/{img} (img=${vacante.imagen})}"
+                <img class="rounded mx-auto d-block" th:src="@{/imagenes/{img} (img=${vacante.imagen})}"
                      alt="Imagen no disponible" width="180"
                      height="180">
             </div>
@@ -66,7 +63,7 @@
 
 </main>
 
-<footer class="footer" th:insert="fragments/footer::footer">
+<footer class="footer" th:insert="~{fragments/footer::footer}">
 
 </footer>
 

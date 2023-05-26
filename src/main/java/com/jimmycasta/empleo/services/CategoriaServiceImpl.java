@@ -1,7 +1,8 @@
 package com.jimmycasta.empleo.services;
 
 import com.jimmycasta.empleo.Entities.Categoria;
-import org.springframework.context.annotation.Primary;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
@@ -72,6 +73,11 @@ public class CategoriaServiceImpl implements ICategoriaService {
     }
 
     @Override
+    public Page<Categoria> buscarTodos(Pageable page) {
+        return null;
+    }
+
+    @Override
     public Categoria buscarPorId(int id) {
 
         for (Categoria categoria : listaCategoria) {
@@ -88,6 +94,13 @@ public class CategoriaServiceImpl implements ICategoriaService {
     public void guardar(Categoria categoria) {
 
         listaCategoria.add(categoria);
+
+    }
+
+    @Override
+    public void eliminar(int id) {
+
+
 
     }
 }

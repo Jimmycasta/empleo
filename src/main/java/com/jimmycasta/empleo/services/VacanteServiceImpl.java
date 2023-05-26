@@ -1,6 +1,9 @@
 package com.jimmycasta.empleo.services;
 
 import com.jimmycasta.empleo.Entities.Vacante;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
@@ -83,6 +86,11 @@ public class VacanteServiceImpl implements IVacanteService {
     }
 
     @Override
+    public Page<Vacante> buscarTodos(Pageable page) {
+        return null;
+    }
+
+    @Override
     public Vacante buscarPorId(int id) {
 
         for (Vacante v : lista) {
@@ -98,4 +106,21 @@ public class VacanteServiceImpl implements IVacanteService {
     public void guardar(Vacante vacante) {
         lista.add(vacante);
     }
+
+    @Override
+    public List<Vacante> buscarDestacados() {
+        return null;
+    }
+
+    @Override
+    public void eliminar(int id) {
+
+    }
+
+    @Override
+    public List<Vacante> buscarByExample(Example<Vacante> example) {
+        return null;
+    }
+
+
 }

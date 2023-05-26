@@ -33,7 +33,7 @@
                    role="button"><i
                         class="fas fa-file" aria-hidden="true"></i> Nueva</a>
                 <hr>
-                <div th:if="${mensaje != null}" class="alert alert-success" th:text="${mensaje}" role="alert"></div>
+                <div th:if="${msg != null}" class="alert alert-success" th:text="${msg}" role="alert"></div>
                 <table class="table table-hover">
                     <thead class="thead-light">
                     <tr>
@@ -54,14 +54,21 @@
                         <td th:text="${vacante.getEstatus()}"></td>
                         <td th:text="${vacante.getDestacado() ==1} ?'SI': 'NO'"></td>
                         <td>
-                            <a href="#" class="btn btn-success btn-sm" role="button" title="Editar el registro."><i
+                            <a th:href="@{/vacantes/editar/{id} (id = ${vacante.id})}" class="btn btn-success btn-sm" role="button" title="Editar el registro."><i
                                     class="fas fa-pencil-alt" aria-hidden="true"></i></a>
-                            <a href="#" class="btn btn-success btn-sm confirmar" role="button"
+                            <a th:href="@{/vacantes/eliminar/{id} (id = ${vacante.id})}" class="btn btn-success btn-sm confirmar" role="button"
                                title="Eliminar el registro."><i class="fas fa-trash" aria-hidden="true"></i></a>
                         </td>
                     </tr>
                     </tbody>
                 </table>
+
+                <nav th:if="${listaVacantes.totalPages > 0}" aria-label="Pagina de navegacion">
+                    <ul class="pagination">
+                        <li class="page-item"><a th:href="@{/vacantes/indexPaginate(page=${listaVacantes.number -1})}" class="page-link">Anterior</a> </li>
+                        <li class="page-item"> <a th:href="@{/vacantes/indexPaginate(page=${listaVacantes.number + 1})}" class="page-link">Siguiente</a></li>
+                    </ul>
+                </nav>
 
             </div>
         </div>

@@ -32,7 +32,8 @@
             <br>
             <h4 class="card-header"><strong>Datos de la oferta de trabajo</strong></h4>
             <div class="card-body">
-                <form th:action="@{/vacantes/guardar}" th:object="${vacante}" method="post" enctype="multipart/form-data">
+                <form th:action="@{/vacantes/guardar}" th:object="${vacante}" method="post"
+                      enctype="multipart/form-data">
 
                     <div th:if="${#fields.hasErrors('*')}" class='alert alert-danger' role='alert'>
                         por favor corregir los siguientes errores
@@ -45,6 +46,9 @@
                     <div class="row">
                         <div class="col-md-3">
                             <div class="form-group">
+                                <input type="hidden" th:field="*{id}">
+                                <input type="hidden" th:field="*{imagen}">
+
                                 <label for="nombre">Nombre</label>
                                 <input type="text" class="form-control" id="nombre" name="nombre"
                                        placeholder="Titulo de la oferta de trabajo" required="required"
@@ -65,7 +69,8 @@
                             <div class="form-group">
                                 <label for="categoria">Categoría</label>
                                 <select class="form-control" th:field="*{categoria.id}" id="categoria">
-                                    <option th:each="categoria : ${categorias}" th:value="${categoria.getId()}" th:text="${categoria.nombre}"></option>
+                                    <option th:each="categoria : ${categorias}" th:value="${categoria.getId()}"
+                                            th:text="${categoria.nombre}"></option>
                                 </select>
                             </div>
                         </div>
@@ -87,17 +92,21 @@
                                        placeholder="Fecha de publicacion" required="required" th:field="*{fecha}">
                             </div>
                         </div>
+
                         <div class="col-md-3">
                             <div class="form-check">
-                                <label class="form-check-label" for="destacado"></label><br>
+                                <br>
                                 <input class="form-check-input" type="radio" name="destacado" id="destacado" value="1"
                                        checked="checked" th:field="*{destacado}">
-                                <label class="form-check-label" for="destacado">Destacado</label>
+                                <label class="form-check-label" for="destacado">Destacado</label><br>
                             </div>
+
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="destacado" id="destacado" value="0">
-                                <label class="form-check-label" for="destacado">No Destacado</label>
+                                <input class="form-check-input" type="radio" name="destacado" id="no-destacad" value="0"
+                                       checked="checked" th:field="*{destacado}">
+                                <label class="form-check-label" for="no-destacad">No Destacado</label>
                             </div>
+
                         </div>
                     </div>
                     <div class="row">
@@ -126,7 +135,7 @@
                         </div>
                         <div class="col-md-3">
                             <label for="imagen">Imagen/Logo</label>
-                            <img class="rounded mx-auto d-block" src="images/construccion-logo.png"
+                            <img class="rounded mx-auto d-block" th:src="@{/imagenes/{id} (id = ${vacante.imagen})}"
                                  alt="Generic placeholder image" width="200" height="200">
                         </div>
                     </div>

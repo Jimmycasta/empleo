@@ -9,7 +9,7 @@ public class Categoria {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String nombre;
-    private  String descripcion;
+    private String descripcion;
 
     public Categoria() {
     }

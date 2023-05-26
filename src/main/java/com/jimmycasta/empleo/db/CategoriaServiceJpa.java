@@ -5,6 +5,8 @@ import com.jimmycasta.empleo.Repository.CategoriasRepository;
 import com.jimmycasta.empleo.services.ICategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,6 +22,11 @@ public class CategoriaServiceJpa implements ICategoriaService {
     @Override
     public List<Categoria> buscarTodos() {
         return categoriasRepository.findAll();
+    }
+
+    @Override
+    public Page<Categoria> buscarTodos(Pageable page) {
+        return categoriasRepository.findAll(page);
     }
 
     @Override
@@ -40,5 +47,10 @@ public class CategoriaServiceJpa implements ICategoriaService {
 
         categoriasRepository.save(categoria);
 
+    }
+    @Override
+    public void eliminar(int id) {
+
+        categoriasRepository.deleteById(id);
     }
 }

@@ -23,6 +23,12 @@ public class Vacante {
     @JoinColumn(name = "idCategoria")
     private Categoria categoria;
 
+
+    public void reset(){
+        this.imagen = null;
+
+    }
+
     public Vacante() {
     }
 
