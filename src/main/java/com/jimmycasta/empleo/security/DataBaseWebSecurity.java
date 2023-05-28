@@ -4,9 +4,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.sql.DataSource;
 
@@ -18,7 +21,7 @@ public class DataBaseWebSecurity {
     @Bean
     UserDetailsManager users(DataSource dataSource) {
 
-        //solo con esta linea, Usa la base de datos por defecto
+        //solo con esta línea, Usa la base de datos por defecto
         JdbcUserDetailsManager users = new JdbcUserDetailsManager(dataSource);
 
         // si se añade estos lines, se usa la Base de datos propia
@@ -34,7 +37,7 @@ public class DataBaseWebSecurity {
         http.authorizeHttpRequests()
 
                 //Los recursos estáticos no requieres autenticación.
-                .requestMatchers("/bootstrap/**", "/images/**", "/tinymce/**", "/images/**").permitAll()
+                .requestMatchers("/bootstrap/**", "/images/**", "/tinymce/**", "/images/**", "/bcrypt/**").permitAll()
 
                 //las vistas públicas o requieren autenticación.
                 .requestMatchers("/", "/registro", "/search", "/vacantes/view").permitAll()
@@ -48,9 +51,17 @@ public class DataBaseWebSecurity {
                 .anyRequest().authenticated()
 
                 //El formulario de login no requiere autenticación.
-                .and().formLogin().permitAll();
+                .and().formLogin().loginPage("/login").permitAll();
 
         return http.build();
 
     }
+
+    //Método para decirle a Spring que vamos a usar un Login propio (ver la linea de arriba formLogin).
+
+    @Bean
+    public PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
+
 }

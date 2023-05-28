@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -18,19 +18,29 @@
 
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
+                <li class="nav-item" sec:authotize="hasAnyAuthority('Supervisor','Administrador','Usuario')">
                     <a class="nav-link active" th:href="@{/vacantes/indexPaginate}">Vacantes</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" sec:authotize="hasAnyAuthority('Supervisor','Administrador','Usuario')">
                     <a class="nav-link" th:href="@{/categorias/indexPaginate}">Categorias</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" sec:authotize="hasAnyAuthority('Administrador')">
                     <a class="nav-link" th:href="@{/usuarios/index}">Usuarios</a>
                 </li>
             </ul>
-            <a class="btn btn-primary" href="#">Ingresar</a>&nbsp;&nbsp;
-            <a class="btn btn-primary" th:href="@{/registro}">Registrarse</a>&nbsp;
-            <a class="btn btn-primary" th:href="@{/logout}">Salir</a>&nbsp;
+            <!-- linea que renderiza en el navbar el usuario que inicio sección. -->
+            <span th:if="${session.usuario != null}" class="text-light"
+                  th:text="'Bienvenido ' + ${session.usuario.nombre}"></span>&nbsp;&nbsp;
+
+            <!-- muestra la bienvenida a anonimo, pero no funciona.
+            <span class="text-light"><strong>Bienvenido</strong></span>&nbsp;<span class="text-light" sec:authentication="name"></span>&nbsp;&nbsp;
+            -->
+
+            <div sec:authotize="isAnonymous()">
+                <a class="btn btn-primary" th:href="@{/index}">Ingresar</a>&nbsp;&nbsp;
+                <a class="btn btn-primary" th:href="@{/registro}">Registrarse</a>&nbsp;
+            </div>
+            <a  class="btn btn-primary" th:href="@{/logout}" >Salir</a>&nbsp;
         </div>
     </nav>
 

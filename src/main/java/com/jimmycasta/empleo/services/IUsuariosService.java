@@ -6,10 +6,14 @@ import java.util.List;
 
 public interface IUsuariosService {
 
-void guardar(Usuario usuario);
+    void guardar(Usuario usuario);
 
-void eliminar (int id);
+    void eliminar(int id);
 
-List<Usuario> buscarTodos();
+    List<Usuario> buscarTodos();
+
+    Usuario buscarPorUsername(String username);
 
 }
+
+

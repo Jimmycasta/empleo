@@ -33,4 +33,9 @@ public class UsuariosService implements IUsuariosService {
 
         return usuarioRepository.findAll();
     }
+
+    @Override
+    public Usuario buscarPorUsername(String username) {
+        return usuarioRepository.findByUsername(username);
+    }
 }
