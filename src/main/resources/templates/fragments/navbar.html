@@ -30,7 +30,7 @@
             </ul>
             <!-- linea que renderiza en el navbar el usuario que inicio sección. -->
             <span th:if="${session.usuario != null}" class="text-light"
-                  th:text="'Bienvenido ' + ${session.usuario.nombre}"></span>&nbsp;&nbsp;
+                   th:text="'Bienvenido! ' + ${session.usuario.nombre}"> </span>&nbsp;&nbsp;
 
             <!-- muestra la bienvenida a anonimo, pero no funciona.
             <span class="text-light"><strong>Bienvenido</strong></span>&nbsp;<span class="text-light" sec:authentication="name"></span>&nbsp;&nbsp;

@@ -124,7 +124,7 @@ public class HomeController {
     }
 
     @GetMapping("/index")
-    public String mostrarIndex(Authentication auth, HttpSession session) {
+    public String mostrarIndex(Authentication auth, HttpSession session,Model model) {
         String username = auth.getName();
         System.out.println("El nombre es: " + username);
 

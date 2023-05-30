@@ -11,11 +11,14 @@ public class WebConfig implements WebMvcConfigurer {
     @Value("${ruta.webconfig")
     private String rutaWebConfig;
 
+    @Value("${ruta.hoja.vida")
+    private String rutaHojaDeVida;
+
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
         //registry.addResourceHandler("/imagenes/**").addResourceLocations("file:c:/imagenes/");
         registry.addResourceHandler("/imagenes/**").addResourceLocations("file:///c:/imagenes/");
-
+        registry.addResourceHandler("/cv/**").addResourceLocations("file:///c:/archivos-cv/");
     }
 
 }

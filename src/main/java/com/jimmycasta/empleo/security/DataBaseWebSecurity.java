@@ -40,7 +40,7 @@ public class DataBaseWebSecurity {
                 .requestMatchers("/bootstrap/**", "/images/**", "/tinymce/**", "/images/**", "/bcrypt/**").permitAll()
 
                 //las vistas públicas o requieren autenticación.
-                .requestMatchers("/", "/registro", "/search", "/vacantes/view").permitAll()
+                .requestMatchers("/", "/registro", "/search", "/vacantes/view/**").permitAll()
 
                 //Asignar permisos a URL por roles.
                 .requestMatchers("/vacantes/**").hasAnyAuthority("Usuario","Administrador")
